@@ -15,10 +15,6 @@ var clock = new THREE.Clock();
 var oulu, colliderBuildings, colliderGround;
 var debugMode = false;
 
-var portals = [];
-var currPortal;
-var currPhoto;
-
 // FUNCTIONS 		
 function init()
 {
@@ -112,8 +108,7 @@ function init()
 	var ambientLight = new THREE.AmbientLight(0x6b6b6b);
 	scene.add(ambientLight);
 
-	addPortal(-92.67262095952854, 107.89679103144006);
-	addHistoricalImage('img/yy.png', { x: -90, y: 21.3, z: 60, ry: .3, w: 916 * .05, h: 645 * .05});
+	HOulu.init(scene, flyCamera);
 	
 	// mouse lock
 	document.body.requestPointerLock = document.body.requestPointerLock ||
@@ -230,52 +225,10 @@ function update() {
 	var delta = clock.getDelta(); // seconds.
 
 	flyControls.update(delta * 1000);
-	
+	HOulu.update();
 	stats.update();
 }
 
 function render() {
 	renderer.render(scene, flyCamera);
-}
-
-function addHistoricalImage(src, props)
-{
-	var loader = new THREE.TextureLoader();
-	loader.load(src
-	, function (texture) // success
-	{
-		var material = new THREE.MeshBasicMaterial({map:texture, transparent: true});
-		var geometry = new THREE.PlaneGeometry(props.w || 5, props.h || 5);
-		var mesh = new THREE.Mesh( geometry, material );
-		mesh.position.x = props.x || 0;
-		mesh.position.y = props.y || 0;
-		mesh.position.z = props.z || 0;
-		mesh.rotation.x = props.rx || 0;
-		mesh.rotation.y = props.ry || 0;
-		mesh.rotation.z = props.rz || 0;
-		mesh.visible = false;
-		scene.add(mesh);
-		
-		currPhoto = mesh;
-	});
-}
-
-function addPortal(x, z)
-{
-	var loader = new THREE.TextureLoader();
-	loader.load("img/portal.png"
-	, function (texture) // success
-	{
-		var material = new THREE.SpriteMaterial({map:texture, useScreenCoordinates: false, alignment: THREE.SpriteAlignment.center});
-		var portal = new THREE.Sprite( material );
-		portal.scale.set(5, 5, 1);
-		portal.position.x = x;
-		portal.position.y = 13.5;
-		portal.position.z = z;
-		scene.add(portal);
-		
-		TweenMax.to(portal.scale, 1, {x: 5.4, y: 5.1, repeat: -1, yoyo: true, ease: Linear.easeInOut});
-		
-		portals.push(portal);
-	});
 }

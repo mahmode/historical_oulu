@@ -2,7 +2,8 @@
  * @author mrdoob / http://mrdoob.com/
  * @author Tapani Jämsä (free look modification)
  */
-
+var yawObject;
+var pitchObject;
 THREE.FreeLookControls = function(camera, domElement) {
 
 	var scope = this;
@@ -10,10 +11,10 @@ THREE.FreeLookControls = function(camera, domElement) {
 
 	camera.rotation.set(0, 0, 0);
 
-	var pitchObject = new THREE.Object3D();
+	pitchObject = new THREE.Object3D();
 	pitchObject.add(camera);
 
-	var yawObject = new THREE.Object3D();
+	yawObject = new THREE.Object3D();
 	yawObject.position.set(-119, 14, 115);
 	yawObject.add(pitchObject);
 
@@ -50,7 +51,7 @@ THREE.FreeLookControls = function(camera, domElement) {
 
 	var onMouseMove = function(event) {
 
-		if (scope.enabled === false || dragging === false || currPortal) return;
+		if (scope.enabled === false || dragging === false || HOulu.currPortal) return;
 
 		var movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
 		var movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
@@ -86,32 +87,6 @@ THREE.FreeLookControls = function(camera, domElement) {
 				moveRight = true;
 				break;
 
-			case 32: // space
-				if (!currPortal)
-				{
-					currPortal = getNearPortal();
-					if (currPortal)
-					{
-						currPhoto.material.opacity = 0;
-						currPhoto.visible = true;
-						
-						TweenMax.to(currPhoto.material, 2, {opacity: 1});
-						
-						yawObject.position.x = -92.68312432289818;
-						yawObject.position.z = 109.39718811455441;
-						yawObject.rotation.y = -0.055999999999999855;
-						pitchObject.rotation.x = 0.30400000000000016;
-					}
-				}
-				else
-				{
-					TweenMax.killTweensOf(currPhoto.material);
-					
-					currPortal = null;
-					currPhoto.visible = false;
-				}
-				break;
-			
 			/*case 32: // space
 				// if ( canJump === true ) velocity.y += 10;
 				// canJump = false;
@@ -211,7 +186,7 @@ THREE.FreeLookControls = function(camera, domElement) {
 
 	this.update = function(delta) {
 
-		if (scope.enabled === false || currPortal) return;
+		if (scope.enabled === false || HOulu.currPortal) return;
 
 		delta *= 0.1;
 
@@ -250,20 +225,6 @@ THREE.FreeLookControls = function(camera, domElement) {
 		// }
 
 	};
-
-	function getNearPortal()
-	{
-		for (var i=0; i < portals.length; i++)
-		{
-			dx = portals[i].position.x - yawObject.position.x;
-			dz = portals[i].position.z - yawObject.position.z;
-			
-			if (dx*dx + dz*dz < 30)
-				return portals[i];
-		}
-		
-		return null;
-	}
 
 	this.domElement.addEventListener('mouseup', onMouseUp, false);
 	this.domElement.addEventListener('mousedown', onMouseDown, false);

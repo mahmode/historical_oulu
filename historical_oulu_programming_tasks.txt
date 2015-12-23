@@ -1,0 +1,12 @@
+Mounib:
+1. UI
+2. minimap
+
+Mahmoud:
+3. separate our work in a new class
+4. create the data model
+5. create a model to control positioning new images
+
+
+6. camera colliders
+7. scoring
