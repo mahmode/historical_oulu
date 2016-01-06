@@ -115,18 +115,19 @@ HOulu.onKeyDown = function(e)
 			break;
 		
 		case 90: // Z
-			var template = '{"url":"{url}","px":"{px}","pz":"{pz}","ix":"{ix}","iy":"{iy}","iz":"{iz}","iry":"{iry}","iw":"{iw}","ih":"{ih}","cx":"{cx}","cz":"{cz}","crx":"{crx}","cry":"{cry}"}';
+			var template = '{"url":"{url}","px":{px},"pz":{pz},"ix":{ix},"iy":{iy},"iz":{iz},"iry":{iry},"iw":{iw},"ih":{ih},"cx":{cx},"cz":{cz},"crx":{crx},"cry":{cry}}';
+			var img = HOulu._debugPortal.targetImage;
 			
 			console.log(
-				template.replace("{url}", HOulu._debugPortal.targetImage.d.url)
+				template.replace("{url}", img.d.url)
 						.replace("{px}", +HOulu._debugPortal.position.x.toFixed(3))
 						.replace("{pz}", +HOulu._debugPortal.position.z.toFixed(3))
-						.replace("{ix}", +HOulu._debugPortal.targetImage.position.x.toFixed(3))
-						.replace("{iy}", +HOulu._debugPortal.targetImage.position.y.toFixed(3))
-						.replace("{iz}", +HOulu._debugPortal.targetImage.position.z.toFixed(3))
-						.replace("{iry}", +HOulu._debugPortal.targetImage.rotation.y.toFixed(3))
-						.replace("{iw}", +HOulu._debugPortal.targetImage.scale.x.toFixed(3))
-						.replace("{ih}", +HOulu._debugPortal.targetImage.scale.y.toFixed(3))
+						.replace("{ix}", +img.position.x.toFixed(3))
+						.replace("{iy}", +img.position.y.toFixed(3))
+						.replace("{iz}", +img.position.z.toFixed(3))
+						.replace("{iry}", +img.rotation.y.toFixed(3))
+						.replace("{iw}", +(img.geometry.width * img.scale.x).toFixed(3))
+						.replace("{ih}", +(img.geometry.height * img.scale.y).toFixed(3))
 						.replace("{cx}", +yawObject.position.x.toFixed(3))
 						.replace("{cz}", +yawObject.position.z.toFixed(3))
 						.replace("{crx}", +pitchObject.rotation.x.toFixed(3))
