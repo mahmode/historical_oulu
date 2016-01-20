@@ -41,6 +41,12 @@ function init()
 		renderer = new THREE.CanvasRenderer();
 		renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
+		
+	$( window ).resize(function()
+	{
+		THREEx.WindowResize(renderer, flyCamera);
+	});
+	
 	// For shadows
 	// renderer.shadowMapEnabled = true;
 	// renderer.shadowMapSoft = true;

@@ -7,7 +7,11 @@ $(function()
 	})
 	.dialog({ autoOpen: false, 
 		show: { effect: 'fade', duration: 500 },
-		hide: { effect: 'fade', duration: 500 } 
+		hide: { effect: 'fade', duration: 500 },
+		width: 600,
+		height: 400,
+		resizable: false,
+		draggable: false
 	});
 	
 	 $("#Achievments")

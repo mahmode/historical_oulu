@@ -15,7 +15,7 @@ THREE.FreeLookControls = function(camera, domElement) {
 	pitchObject.add(camera);
 
 	yawObject = new THREE.Object3D();
-	yawObject.position.set(-131, 14, 23);
+	yawObject.position.set(2.3, 14, -25.24);
 	yawObject.add(pitchObject);
 
 	var moveForward = false;
@@ -58,7 +58,12 @@ THREE.FreeLookControls = function(camera, domElement) {
 
 		yawObject.rotation.y -= movementX * 0.004;
 		pitchObject.rotation.x -= movementY * 0.004;
-
+		
+		if (yawObject.rotation.y > 6.28318)
+			yawObject.rotation.y -= 6.28318;
+		else if (yawObject.rotation.y < -6.28318)
+			yawObject.rotation.y += 6.28318;
+		
 		pitchObject.rotation.x = Math.max(-PI_2, Math.min(PI_2, pitchObject.rotation.x));
 
 	};
@@ -232,4 +237,3 @@ THREE.FreeLookControls = function(camera, domElement) {
 	window.addEventListener('keydown', onKeyDown, false);
 	window.addEventListener('keyup', onKeyUp, false);
 };
-

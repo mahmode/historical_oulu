@@ -5,6 +5,7 @@ HOulu.init = function(scen, cam)
 	this._scene = scen;
 	this._camera = cam;
 	this._portals = [];
+	this._score = 0;
 	this._debugPortal = null;
 	
 	this.currPortal; // accessed from FreeLock.onMouseMove
@@ -15,14 +16,39 @@ HOulu.init = function(scen, cam)
 			HOulu._addHistoricalImage(data.d[i], i == data.d.length - 1);
 	});
 	
-	
-	
 	window.addEventListener('keydown', this.onKeyDown, false);
 }
 
 HOulu.update = function()
 {
-	
+	if (!HOulu.currPortal)
+	{
+		if (HOulu._getNearPortal())
+		{
+			if (!$("#pressSpace").is(':visible'))
+			{
+				$("#pressSpace").show();
+				$("#pressSpace").css("opacity", 1);
+				TweenMax.to($("#pressSpace"), .7, {alpha: .1, repeat: -1, yoyo: true, ease: Linear.easeNone});
+			}
+		}
+		else
+		{
+			if ($("#pressSpace").is(':visible'))
+			{
+				$("#pressSpace").hide();
+				TweenMax.killTweensOf($("#pressSpace"));
+			}
+		}
+	}
+	else
+	{
+		if ($("#pressSpace").is(':visible'))
+		{
+			$("#pressSpace").hide();
+			TweenMax.killTweensOf($("#pressSpace"));
+		}
+	}
 }
 
 HOulu.onKeyDown = function(e)
@@ -30,6 +56,7 @@ HOulu.onKeyDown = function(e)
 	switch (e.keyCode)
 	{
 		case 32: // space
+			
 			if (!HOulu.currPortal)
 			{
 				HOulu.currPortal = HOulu._getNearPortal();
@@ -39,12 +66,25 @@ HOulu.onKeyDown = function(e)
 					img.material.opacity = 0;
 					img.visible = true;
 					
-					TweenMax.to(img.material, 2, {opacity: 1});
+					TweenLite.to(img.material, 2, {opacity: 1, delay: .5});
 					
 					yawObject.position.x = img.d.cx;
 					yawObject.position.z = img.d.cz;
-					yawObject.rotation.y = img.d.cry;
-					pitchObject.rotation.x = img.d.crx;
+					//yawObject.rotation.y = img.d.cry;
+					//pitchObject.rotation.x = img.d.crx;
+					
+					TweenLite.to(yawObject.rotation, .5, {y: img.d.cry, ease: Linear.easeOut});
+					TweenLite.to(pitchObject.rotation, .5, {x: img.d.crx, ease: Linear.easeOut});
+					
+					HOulu._hidePortals();
+					
+					if (!HOulu.currPortal.viewed) // score
+					{
+						HOulu._score ++;
+						HOulu.currPortal.viewed = true;
+						
+						console.log("score: ", HOulu._score);
+					}
 				}
 			}
 			else
@@ -53,6 +93,8 @@ HOulu.onKeyDown = function(e)
 				
 				HOulu.currPortal.targetImage.visible = false;
 				HOulu.currPortal = null;
+				
+				HOulu._showPortals();
 			}
 			break;
 		
@@ -177,6 +219,8 @@ HOulu._addPortal = function(x, z)
 		portal.position.z = z;
 		HOulu._scene.add(portal);
 		
+		portal.viewed = false;
+		
 		TweenMax.to(portal.scale, 1, {x: 5.4, y: 5.1, repeat: -1, yoyo: true, ease: Linear.easeInOut});
 		
 		HOulu._portals.push(portal);
@@ -197,4 +241,19 @@ HOulu._getNearPortal = function()
 	}
 	
 	return null;
+}
+
+HOulu._hidePortals = function()
+{
+	for (var i = 0; i < this._portals.length; i++)
+	{
+		if (this._portals[i] != this.currPortal)
+			this._portals[i].visible = false;
+	}
+}
+
+HOulu._showPortals = function()
+{
+	for (var i = 0; i < this._portals.length; i++)
+		this._portals[i].visible = true;
 }
