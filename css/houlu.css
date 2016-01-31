@@ -1,3 +1,46 @@
+body
+{
+	background: #222;
+	
+}
+#loading 
+{
+	position: absolute;
+    z-index: 50;
+	margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+	width: 700px;
+    height: 60px;
+	color: white;
+	font: normal 20px tahoma;
+	text-align: center;
+	pointer-events:none;
+}
+
+#loading img
+{
+	vertical-align:middle;
+}
+
+#hud
+{
+	display: none;
+}
+
+#map_border
+{
+	z-index:99;
+	background: rgba(0,0,0,0);
+	opacity:.9;
+	position:absolute;
+	bottom:95px;
+	right:58px;
+	display:none;
+}
+
 #pressSpace 
 {
 	position: absolute;
@@ -16,6 +59,43 @@
     -webkit-text-stroke-color: black;
     text-shadow: 4px 4px #000000;
 	display: none;
-	
 	pointer-events:none;
+}
+
+#pressStart
+{
+	position: absolute;
+    z-index: 8;
+    bottom: 150px;
+    height: 60px;
+	right: 0;
+    left: 0;
+	color: white;
+	font: bold 30px tahoma;
+	text-align: center;
+	-webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    text-shadow: 2px 2px #000000;
+	pointer-events:none;
+	display: none;
+	/*border: 1px solid red;*/
+}
+
+#title
+{
+	position: absolute;
+	color: #ff9900;
+	font: bold 100px tahoma;
+	text-align: center;
+	-webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    text-shadow: 4px 4px #000000;
+	z-index: 9;
+	pointer-events:none;
+    top: 150px;
+    right: 0;
+    left: 0;
+    height: 100px;
+	display: none;
+	/*border: 1px solid red;*/
 }

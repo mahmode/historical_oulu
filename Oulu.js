@@ -14,6 +14,7 @@ var keyboard = new THREEx.KeyboardState();
 var clock = new THREE.Clock();
 var oulu, colliderBuildings, colliderGround;
 var debugMode = false;
+var mapCamera, mapWidth = 240, mapHeight = 160; 
 
 // FUNCTIONS 		
 function init()
@@ -32,6 +33,20 @@ function init()
 	scene.add(flyCamera);
 	flyCamera.position.set(0, 0, 0); // don't touch this! modify freelook.js --> yawObject.position instead
 	
+	mapCamera = new THREE.OrthographicCamera(
+    window.innerWidth / -7,		// Left
+    window.innerWidth / 7,		// Right
+    window.innerHeight / 7,		// Top
+    window.innerHeight / -7,	// Bottom
+    -100,            			// Near 
+    1500);           			// Far 
+	mapCamera.up = new THREE.Vector3(0,0,-1);
+	mapCamera.lookAt( new THREE.Vector3(0,-1,0) );
+    mapCamera.zoom = 5;
+	scene.add(mapCamera);
+	
+	scene.add( sphere );
+	
 	// RENDERER
 	if (Detector.webgl)
 		renderer = new THREE.WebGLRenderer({
@@ -39,9 +54,9 @@ function init()
 		});
 	else
 		renderer = new THREE.CanvasRenderer();
-		renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+	
+	renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-		
 	$( window ).resize(function()
 	{
 		THREEx.WindowResize(renderer, flyCamera);
@@ -75,9 +90,11 @@ function init()
 	// flyControls.rollSpeed = Math.PI / 12; // Math.PI / 24
 	// flyControls.autoForward = false;
 	// flyControls.dragToLook = true;
-	flyControls = new THREE.FreeLookControls(flyCamera, renderer.domElement);
+	flyControls = new THREE.FreeLookControls(flyCamera, mapCamera, renderer.domElement);
 	flyControls.enabled = true;
 	scene.add(flyControls.getObject());
+	scene.add(flyControls.getObject2());
+	
 	// STATS
 	stats = new Stats();
 	stats.domElement.style.position = 'absolute';
@@ -85,6 +102,14 @@ function init()
 	stats.domElement.style.zIndex = 100;
 	container.appendChild(stats.domElement);
 	
+	var geometry = new THREE.PlaneGeometry( 1200, 1200, 1,1 );
+    var material = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide} );
+    var plane = new THREE.Mesh( geometry, material );
+	plane.position.y = -350;
+ 	plane.rotation.x = 180;
+    plane.rotation.z = 0;
+    scene.add( plane );
+	 
 	// White directional light at half intensity shining from the top.
 	//directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
 	//directionalLight.position.set(100, 100, 100);
@@ -94,33 +119,42 @@ function init()
 	////////////
 	// CUSTOM //
 	////////////
-
+	
 	// Note: if imported model appears too dark,
 	//   add an ambient light in this file
 	//   and increase values in model's exported .js file
 	//    to e.g. "colorAmbient" : [0.75, 0.75, 0.75]
+	
+	Loader.init();
+	HOulu.init(scene, flyCamera, mapCamera);
+	
 	var jsonLoader = new THREE.JSONLoader();
 	jsonLoader.load("Masterscene.js", function(geometry, material) {
 		addModelToScene(geometry, material, "oulu");
+		Loader.updateLoadProgress();
 	});
 	jsonLoader.load("ColliderBuildings.js", function(geometry, material) {
 		addModelToScene(geometry, material, "colliderbuildings");
+		Loader.updateLoadProgress();
 	});
 	jsonLoader.load("ColliderGround.js", function(geometry, material) {
 		addModelToScene(geometry, material, "colliderground");
+		Loader.updateLoadProgress();
 	});
 	// addModelToScene function is called back after model has loaded
 
 	var ambientLight = new THREE.AmbientLight(0x6b6b6b);
 	scene.add(ambientLight);
 
-	HOulu.init(scene, flyCamera);
-	
 	// mouse lock
 	document.body.requestPointerLock = document.body.requestPointerLock ||
 								document.body.mozRequestPointerLock ||
 								document.body.webkitRequestPointerLock;
 	document.body.requestPointerLock();
+	
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	renderer.setClearColor(0X000000);
+	renderer.autoClear = false;
 	
 	animate();
 }
@@ -235,6 +269,17 @@ function update() {
 	stats.update();
 }
 
-function render() {
-	renderer.render(scene, flyCamera);
+function render()
+{
+	var w = window.innerWidth, h = window.innerHeight;
+	
+	renderer.setViewport( 0, 0, w, h );
+    renderer.render(scene, flyCamera);
+   //renderer.autoClear = true;
+	
+	if (!HOulu.paused)
+	{
+		renderer.setViewport( w - 300, 100, mapWidth, mapHeight );
+		renderer.render( scene, mapCamera );
+	}
 }

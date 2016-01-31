@@ -1,17 +1,21 @@
 var HOulu = {}
 
-HOulu.init = function(scen, cam)
+HOulu.init = function(scen, cam, cam2)
 {
+	console.log("init");
 	this._scene = scen;
 	this._camera = cam;
+	this._camera2 = cam2;
 	this._portals = [];
 	this._score = 0;
 	this._debugPortal = null;
 	
+	this.paused = true;
 	this.currPortal; // accessed from FreeLock.onMouseMove
-	
 	$.getJSON( "data/data.json", function( data )
 	{
+	console.log(">>>" + data.d.length);
+		
 		for (var i = 0; i < data.d.length; i++)
 			HOulu._addHistoricalImage(data.d[i], i == data.d.length - 1);
 	});
@@ -21,6 +25,8 @@ HOulu.init = function(scen, cam)
 
 HOulu.update = function()
 {
+	if (!Loader.complete) return;
+	
 	if (!HOulu.currPortal)
 	{
 		if (HOulu._getNearPortal())
@@ -56,6 +62,21 @@ HOulu.onKeyDown = function(e)
 	switch (e.keyCode)
 	{
 		case 32: // space
+			if (!Loader.complete) return;
+			
+			if (HOulu.paused)
+			{
+				HOulu.paused = false;
+				
+				TweenLite.to($("#title"), .5, {css:{top:"-=100", alpha:0}, ease:Back.easeIn.config(4)});
+				TweenMax.killTweensOf("#pressStart");
+				TweenLite.to($("#pressStart"), .5, {css:{bottom:"-=100", alpha:0}, ease:Back.easeIn.config(4)});
+				
+				$("#hud").show();
+				$("#map_border").show();
+				//TweenLite.from($("#hud"), .5, {css:{right:"+=100", alpha:0}, ease:Back.easeIn.config(4)});
+				return;
+			}
 			
 			if (!HOulu.currPortal)
 			{

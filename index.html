@@ -10,7 +10,9 @@
 <script type='text/javascript' src='DAT.GUI.min.js'>
     
     </script>
+	<script src="js/gsap/easing/EasePack.min.js"></script>
 	<script src="js/gsap/TweenMax.min.js"></script>
+	<script src="js/houlu/Loader.js"></script>
 	<script src="js/houlu/HOulu.js"></script>
 	<script src="js/Three.js"></script>
 	<script src="js/Detector.js"></script>
@@ -26,21 +28,36 @@
 	<link rel=stylesheet href="css/jquery-ui.css" />
 	<link rel=stylesheet href="css/info.css"/>
 	<link rel=stylesheet href="css/houlu.css"/>
-	<script src="js/info.js"></script>
-	<script src="gui/flyButton.js"></script>
-	<div id="Achievments"></div>
-	<div id="Score"></div>
-	<div id="Help"></div>
-	<div id="Sound"></div>
-	<div id="Achievments_List" title="Information">
-    <img src="images/Achive.png"  />
-Movement: arrows or w,a,s,d <br>
-Fly up: space <br>
-Fly down: shift <br>
-Fly mode toggle: f button
-<a href="http://www.playsign.net/">http://www.playsign.net/</a>
-</div>
+	<script src="gui/UiElements.js"></script>
+	<div id="intro_UI"></div>
+    <div id="info_UI"></div>
+	
+    <div id="hud">
+       <div id="Achievments"></div>
+	   <div id="Score"></div>
+	   <div id="Help"></div>
+	   <div id="Sound"></div>
+       <div id="Score"></div>
+       <div id="Map_borders"></div>
+       <div id="Achievments_List" title="Information">
+			<img id ="fat" src="images/Score.png"/>
+            <img src="images/Achive.png"  />
+		</div>
+
+		<div id="Help_Dialog">
+		  <p> W/Up arrow    : Move Forward<br/>
+			  S/Down arrow  : Move Backword<br/>
+			  D/Right arrow : Move to the Right<br/>
+			  A/Left arrow  : Move to the Left<br/>
+			  Spacebar    : Interact with the portals</p>    
+		</div>
+        
+    </div>
 <!-- ------------------------------------------------------------ -->
+<img id="map_border" width="242" height="162" src='img/min_borders.png' />
+<div id="loading"><img width="25" height="25" src='img/loading.gif' /> loading Historical Oulu...</div>
+<div id="title">Historical Oulu</div>
+<div id="pressStart">Press [SPACE] to start</div>
 <div id="pressSpace">Press [SPACE] to enter the portal</div>
 <div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
 <script src="Oulu.js"></script>
