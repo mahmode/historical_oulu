@@ -14,8 +14,6 @@ HOulu.init = function(scen, cam, cam2)
 	this.currPortal; // accessed from FreeLock.onMouseMove
 	$.getJSON( "data/data.json", function( data )
 	{
-	console.log(">>>" + data.d.length);
-		
 		for (var i = 0; i < data.d.length; i++)
 			HOulu._addHistoricalImage(data.d[i], i == data.d.length - 1);
 	});
@@ -64,13 +62,13 @@ HOulu.onKeyDown = function(e)
 		case 32: // space
 			if (!Loader.complete) return;
 			
-			if (HOulu.paused)
+			if (HOulu.paused) // leave splash and start
 			{
-				//$("#portalPanel").hide('slide', {direction: 'right'}, 1000);
 				HOulu.paused = false;
 				
-				TweenLite.to($("#title"), .5, {css:{top:"-=100", alpha:0}, ease:Back.easeIn.config(4)});
+				TweenMax.killTweensOf("#title");
 				TweenMax.killTweensOf("#pressStart");
+				TweenLite.to($("#title"), .5, {css:{top:"-=100", alpha:0}, ease:Back.easeIn.config(4)});
 				TweenLite.to($("#pressStart"), .5, {css:{bottom:"-=100", alpha:0}, ease:Back.easeIn.config(4)});
 				
 				$("#hud").show();
@@ -84,40 +82,44 @@ HOulu.onKeyDown = function(e)
 				HOulu.currPortal = HOulu._getNearPortal();
 				if (HOulu.currPortal) // enter portal
 				{
-					TweenMax.killTweensOf("#portalPanel");
-					TweenMax.to($("#portalPanel"), .5, {css:{right:-70}, ease:Back.easeOut.config(2)});
-					
+					// show historical image
 					var img = HOulu.currPortal.targetImage;
 					img.material.opacity = 0;
 					img.visible = true;
-					
 					TweenLite.to(img.material, 2, {opacity: 1, delay: .5});
 					
+					// set player rotation angle
 					yawObject.position.x = img.d.cx;
 					yawObject.position.z = img.d.cz;
-					//yawObject.rotation.y = img.d.cry;
-					//pitchObject.rotation.x = img.d.crx;
-					
 					TweenLite.to(yawObject.rotation, .5, {y: img.d.cry, ease: Linear.easeOut});
 					TweenLite.to(pitchObject.rotation, .5, {x: img.d.crx, ease: Linear.easeOut});
 					
-					HOulu._hidePortals();
+					// show the portal panel
+					TweenMax.killTweensOf("#portalPanel");
+					TweenMax.to($("#portalPanel"), .5, {css:{right:-70}, ease:Back.easeOut.config(1)});
+					$("#portalPanel .description").html(img.d.desc);
 					
-					if (!HOulu.currPortal.viewed) // score
-					{
-						HOulu._score ++;
-						HOulu.currPortal.viewed = true;
-						
-						console.log("score: ", HOulu._score);
-					}
+					HOulu._hidePortals();
 				}
 			}
 			else // leave portal
 			{
+				// hide the portal panel
 				TweenMax.killTweensOf("#portalPanel");
-				TweenMax.to($("#portalPanel"), .5, {css:{right:-600}, ease:Back.easeIn.config(2)});
+				TweenMax.to($("#portalPanel"), .5, {css:{right:-700}, ease:Back.easeIn.config(1)});
 				
 				TweenMax.killTweensOf(HOulu.currPortal.targetImage.material);
+				
+				if (!HOulu.currPortal.viewed) // score
+				{
+					HOulu._score ++;
+					HOulu.currPortal.viewed = true;
+					
+					HOulu.currPortal.material.map = THREE.ImageUtils.loadTexture("img/portal_visited.png");
+					
+					console.log("score: ", HOulu._score);
+				}
+					
 				
 				HOulu.currPortal.targetImage.visible = false;
 				HOulu.currPortal = null;
@@ -185,7 +187,7 @@ HOulu.onKeyDown = function(e)
 			break;
 		
 		case 90: // Z
-			var template = '{"url":"{url}","px":{px},"pz":{pz},"ix":{ix},"iy":{iy},"iz":{iz},"iry":{iry},"iw":{iw},"ih":{ih},"cx":{cx},"cz":{cz},"crx":{crx},"cry":{cry}}';
+			var template = '{"url":"{url}","px":{px},"pz":{pz},"ix":{ix},"iy":{iy},"iz":{iz},"iry":{iry},"iw":{iw},"ih":{ih},"cx":{cx},"cz":{cz},"crx":{crx},"cry":{cry}, "desc":{desc}}';
 			var img = HOulu._debugPortal.targetImage;
 			
 			console.log(
@@ -202,6 +204,7 @@ HOulu.onKeyDown = function(e)
 						.replace("{cz}", +yawObject.position.z.toFixed(3))
 						.replace("{crx}", +pitchObject.rotation.x.toFixed(3))
 						.replace("{cry}", +yawObject.rotation.y.toFixed(3))
+						.replace("{desc}", '"' + img.d.desc + '"')
 			);
 	}
 }

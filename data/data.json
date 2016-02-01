@@ -13,36 +13,37 @@
 			"cx":  -92.683,
 			"cz":  109.397,
 			"crx": 0.304,
-			"cry": -0.055
+			"cry": -0.055,
+			"desc":"Kirkkokatu / Pakkahuoneenkatu. The old office building of Kansallis-Osake-Pankki which deconstructed in 1959."
 		}
-		,{"url":"img/p2.jpg","px":-67.089,"pz":62.739,"ix":-26.2,"iy":22.9,"iz":93.8,"iry":-1.88,"iw":20,"ih":26.9,"cx":-68.405,"cz":61.674,"crx":0.256,"cry":-2.30482}
-		,{"url":"img/p3.jpg","px":63.448,"pz":12.6,"ix":136.59,"iy":31.5,"iz":20.574,"iry":-1.54,"iw":70.532,"ih":49.665,"cx":61.769,"cz":12.498,"crx":0.28,"cry":-1.60882}
-		,{"url":"img/p4.png","px":-32.881,"pz":-137.368,"ix":62.9,"iy":19.7,"iz":-154.74,"iry":-1.54,"iw":70.532,"ih":49.665,"cx":-34.378,"cz":-137.144,"crx":0.256,"cry":-1.47282}
-		,{"url":"img/p5.jpg","px":-39.707,"pz":-44.824,"ix":-39.707,"iy":19.7,"iz":-44.824,"iry":-3.68,"iw":54.064,"ih":35.759,"cx":-6.831,"cz":-84.844,"crx":0.104,"cry":2.512}
-		,{"url":"img/p6.jpg","px":-185.012,"pz":175.132,"ix":-185.012,"iy":19.7,"iz":175.132,"iry":-3.68,"iw":44.715,"ih":35.759,"cx":-6.831,"cz":-84.844,"crx":0.104,"cry":2.512}
-		,{"url":"img/p7.jpg","px":-113.547,"pz":116.365,"ix":-113.547,"iy":19.7,"iz":116.365,"iry":-3.68,"iw":54.779,"ih":35,"cx":-6.831,"cz":-84.844,"crx":0.104,"cry":2.512}
-		,{"url":"img/p8.jpg","px":8.388,"pz":-119.614,"ix":8.388,"iy":19.7,"iz":-119.614,"iry":-6.88,"iw":24.874,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p9.jpg","px":-59.583,"pz":-32.298,"ix":-59.583,"iy":19.7,"iz":-32.298,"iry":-6.88,"iw":51.509,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p10.jpg","px":119.451,"pz":76.059,"ix":119.451,"iy":19.7,"iz":76.059,"iry":-6.88,"iw":55.311,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p11.jpg","px":84.752,"pz":36.3647,"ix":84.752,"iy":19.7,"iz":36.3647,"iry":-6.88,"iw":48.389,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p12.jpg","px":4.781,"pz":212.714,"ix":4.781,"iy":19.7,"iz":212.714,"iry":-6.88,"iw":47.727,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p13.jpg","px":68.399,"pz":165.305,"ix":68.399,"iy":19.7,"iz":165.305,"iry":-6.88,"iw":32.719,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p14.jpg","px":-136.695,"pz":101.570,"ix":-136.695,"iy":19.7,"iz":101.570,"iry":-6.88,"iw":48.462,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p15.jpg","px":-12.408,"pz":-55.663,"ix":-12.408,"iy":19.7,"iz":-55.663,"iry":-6.88,"iw":48.603,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p16.jpg","px":-110.641,"pz":136.781,"ix":-110.641,"iy":19.7,"iz":136.781,"iry":-6.88,"iw":48.097,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p17.jpg","px":31.673,"pz":-109.299,"ix":31.673,"iy":19.7,"iz":-109.299,"iry":-6.88,"iw":34.278,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p18.jpg","px":-64.082,"pz":-153.555,"ix":-64.082,"iy":19.7,"iz":-153.555,"iry":-6.88,"iw":46.431,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p19.jpg","px":-89.112,"pz":25.534,"ix":-89.112,"iy":19.7,"iz":25.534,"iry":-6.88,"iw":25.31,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p20.jpg","px":-86.959,"pz":24.676,"ix":-86.959,"iy":19.7,"iz":24.676,"iry":-6.88,"iw":50.387,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p21.jpg","px":87.760,"pz":125.189,"ix":87.760,"iy":19.7,"iz":125.189,"iry":-6.88,"iw":25.322,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p22.jpg","px":78.037,"pz":148.197,"ix":78.037,"iy":19.7,"iz":148.197,"iry":-6.88,"iw":25.225,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p23.jpg","px":-101.041,"pz":54.286,"ix":-101.041,"iy":19.7,"iz":54.286,"iry":-6.88,"iw":57.615,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p24.jpg","px":-153.333,"pz":161.06,"ix":-153.333,"iy":19.7,"iz":161.06,"iry":-6.88,"iw":55.488,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p25.jpg","px":-166.639,"pz":209.576,"ix":-166.639,"iy":19.7,"iz":209.576,"iry":-6.88,"iw":23.073,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p26.jpg","px":-163.358,"pz":144.503,"ix":-163.358,"iy":19.7,"iz":144.503,"iry":-6.88,"iw":50.909,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p27.jpg","px":-96.788,"pz":35.545,"ix":-96.788,"iy":19.7,"iz":35.545,"iry":-6.88,"iw":47.38,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p28.jpg","px":-3.7,"pz":-94.56,"ix":-3.7,"iy":19.7,"iz":-94.56,"iry":-6.88,"iw":47.903,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p29.jpg","px":34.149,"pz":-115.489,"ix":34.149,"iy":19.7,"iz":-115.489,"iry":-6.88,"iw":48.243,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
-		,{"url":"img/p30.jpg","px":-34.846,"pz":-64.575,"ix":-34.846,"iy":19.7,"iz":-64.575,"iry":-6.88,"iw":48.374,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588}
+		,{"url":"img/p2.jpg","px":-67.089,"pz":62.739,"ix":-26.2,"iy":22.9,"iz":93.8,"iry":-1.88,"iw":20,"ih":26.9,"cx":-68.405,"cz":61.674,"crx":0.256,"cry":-2.30482, "desc":"Pakkahuoneenkatu 14. Hotel Arina."}
+		,{"url":"img/p3.jpg","px":63.448,"pz":12.6,"ix":136.59,"iy":31.5,"iz":20.574,"iry":-1.54,"iw":70.532,"ih":49.665,"cx":61.769,"cz":12.498,"crx":0.28,"cry":-1.60882, "desc":"Hallituskatu 13-15. 'Valkealinna' in 1950s."}
+		,{"url":"img/p4.png","px":-32.881,"pz":-137.368,"ix":62.9,"iy":19.7,"iz":-154.74,"iry":-1.54,"iw":70.532,"ih":49.665,"cx":-34.378,"cz":-137.144,"crx":0.256,"cry":-1.47282, "desc":"Kirkkokatu 9. The Insurance House 'Vakuutustalo' from the front of Town Hall at the beginning of the 1960s."}
+		,{"url":"img/p5.jpg","px":-39.707,"pz":-44.824,"ix":-39.707,"iy":19.7,"iz":-44.824,"iry":-3.68,"iw":54.064,"ih":35.759,"cx":-6.831,"cz":-84.844,"crx":0.104,"cry":2.512, "desc":"Kirkkokatu 11-13. Old office building of Kaleva newspaper."}
+		,{"url":"img/p6.jpg","px":-185.012,"pz":175.132,"ix":-185.012,"iy":19.7,"iz":175.132,"iry":-3.68,"iw":44.715,"ih":35.759,"cx":-6.831,"cz":-84.844,"crx":0.104,"cry":2.512, "desc":"Kirkkokatu. View from Kauppurienkatu to the tower of Oulu Cathedral in 1937."}
+		,{"url":"img/p7.jpg","px":-113.547,"pz":116.365,"ix":-113.547,"iy":19.7,"iz":116.365,"iry":-3.68,"iw":54.779,"ih":35,"cx":-6.831,"cz":-84.844,"crx":0.104,"cry":2.512, "desc":"Kikkokatu / Pakkahuoneenkatu. The old office building of Kansallis-Osake-Pankki in 1959."}
+		,{"url":"img/p8.jpg","px":8.388,"pz":-119.614,"ix":8.388,"iy":19.7,"iz":-119.614,"iry":-6.88,"iw":24.874,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Town Hall's yard. The 350th anniversary of City of Oulu. Peace declaration during the celebration in May of 1955."}
+		,{"url":"img/p9.jpg","px":-59.583,"pz":-32.298,"ix":-59.583,"iy":19.7,"iz":-32.298,"iry":-6.88,"iw":51.509,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Krikkokatu 13 / Pakkahuoneenkatu. Wooden house of savings bank Sampo in 1951."}
+		,{"url":"img/p10.jpg","px":119.451,"pz":76.059,"ix":119.451,"iy":19.7,"iz":76.059,"iry":-6.88,"iw":55.311,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Hallituskatu 11. 'Kassatalo' (left) and 'Valkealinna'. 'Kassatalo' is the old building of the Regional Credit Union of Oulu (Oulun seudun osuuskassa) which moved there in 1955."}
+		,{"url":"img/p11.jpg","px":84.752,"pz":36.3647,"ix":84.752,"iy":19.7,"iz":36.3647,"iry":-6.88,"iw":48.389,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Hallituskatu 16. Kassatalo. Old building of the Regional Credit Union of Oulu (Oulun seudun osuuskassa) which moved there in 1955."}
+		,{"url":"img/p12.jpg","px":4.781,"pz":212.714,"ix":4.781,"iy":19.7,"iz":212.714,"iry":-6.88,"iw":47.727,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Isokatu 22. Department store City in 1968."}
+		,{"url":"img/p13.jpg","px":68.399,"pz":165.305,"ix":68.399,"iy":19.7,"iz":165.305,"iry":-6.88,"iw":32.719,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Pakkahuoneenkatu 15 / Isokatu 16. 'Puistola' in the 1950s."}
+		,{"url":"img/p14.jpg","px":-136.695,"pz":101.570,"ix":-136.695,"iy":19.7,"iz":101.570,"iry":-6.88,"iw":48.462,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Kirkkokatu 17. Bookshop 'Pohjalainen'."}
+		,{"url":"img/p15.jpg","px":-12.408,"pz":-55.663,"ix":-12.408,"iy":19.7,"iz":-55.663,"iry":-6.88,"iw":48.603,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Kirkkokatu 6. Construction of the new bank house designed by Aarne Ervi."}
+		,{"url":"img/p16.jpg","px":-110.641,"pz":136.781,"ix":-110.641,"iy":19.7,"iz":136.781,"iry":-6.88,"iw":48.097,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Kirkkokatu. 'Sokos-aukio' in 1963."}
+		,{"url":"img/p17.jpg","px":31.673,"pz":-109.299,"ix":31.673,"iy":19.7,"iz":-109.299,"iry":-6.88,"iw":34.278,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Kirkkokatu. View from Kaupunginoja to Pakkahuoneenkatu 19.8.1976."}
+		,{"url":"img/p18.jpg","px":-64.082,"pz":-153.555,"ix":-64.082,"iy":19.7,"iz":-153.555,"iry":-6.88,"iw":46.431,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Kirkkokatu. Town Hall's yard at the beginning of the 60s."}
+		,{"url":"img/p19.jpg","px":-89.112,"pz":25.534,"ix":-89.112,"iy":19.7,"iz":25.534,"iry":-6.88,"iw":25.31,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"New Year's Eve at the 'Sokos-aukio'."}
+		,{"url":"img/p20.jpg","px":-86.959,"pz":24.676,"ix":-86.959,"iy":19.7,"iz":24.676,"iry":-6.88,"iw":50.387,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"View from the front of Kirkkokatu 6 to Hallituskatu in 1963."}
+		,{"url":"img/p21.jpg","px":87.760,"pz":125.189,"ix":87.760,"iy":19.7,"iz":125.189,"iry":-6.88,"iw":25.322,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Isokatu 18. Hotel Arina in winter in the 1950s."}
+		,{"url":"img/p22.jpg","px":78.037,"pz":148.197,"ix":78.037,"iy":19.7,"iz":148.197,"iry":-6.88,"iw":25.225,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Isokatu 18. Hotel Arina in winter in the 1950s."}
+		,{"url":"img/p23.jpg","px":-101.041,"pz":54.286,"ix":-101.041,"iy":19.7,"iz":54.286,"iry":-6.88,"iw":57.615,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Kirkkokatu 8. The house of Säästöpankki. Windows covered during the Continuation War in 1942."}
+		,{"url":"img/p24.jpg","px":-153.333,"pz":161.06,"ix":-153.333,"iy":19.7,"iz":161.06,"iry":-6.88,"iw":55.488,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Kirkkokatu 8-10. The house of Säästöpankki. Windows covered during the Continuation War in 1942."}
+		,{"url":"img/p25.jpg","px":-166.639,"pz":209.576,"ix":-166.639,"iy":19.7,"iz":209.576,"iry":-6.88,"iw":23.073,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Kirkkokatu 10 / Kauppurienkatu 11 in 1942."}
+		,{"url":"img/p26.jpg","px":-163.358,"pz":144.503,"ix":-163.358,"iy":19.7,"iz":144.503,"iry":-6.88,"iw":50.909,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Kirkkokatu 17. The ruins of 'Pohjalainen' after bombing during the Continuation War in 1942."}
+		,{"url":"img/p27.jpg","px":-96.788,"pz":35.545,"ix":-96.788,"iy":19.7,"iz":35.545,"iry":-6.88,"iw":47.38,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Kirkkokatu 15. Arina-Sokos department store."}
+		,{"url":"img/p28.jpg","px":-3.7,"pz":-94.56,"ix":-3.7,"iy":19.7,"iz":-94.56,"iry":-6.88,"iw":47.903,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Kirkkokatu. Christmas lights in the 1960s."}
+		,{"url":"img/p29.jpg","px":34.149,"pz":-115.489,"ix":34.149,"iy":19.7,"iz":-115.489,"iry":-6.88,"iw":48.243,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Kirkkokatu. Military parade in 1958. Old bank house of Kansallis-Osake-Pankki in the background."}
+		,{"url":"img/p30.jpg","px":-34.846,"pz":-64.575,"ix":-34.846,"iy":19.7,"iz":-64.575,"iry":-6.88,"iw":48.374,"ih":35,"cx":-20.402,"cz":-78.744,"crx":0.024,"cry":-0.588, "desc":"Kirkkokatu. Military parade in 1958."}
 	]
 }
