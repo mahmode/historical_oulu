@@ -66,6 +66,7 @@ HOulu.onKeyDown = function(e)
 			
 			if (HOulu.paused)
 			{
+				//$("#portalPanel").hide('slide', {direction: 'right'}, 1000);
 				HOulu.paused = false;
 				
 				TweenLite.to($("#title"), .5, {css:{top:"-=100", alpha:0}, ease:Back.easeIn.config(4)});
@@ -81,8 +82,11 @@ HOulu.onKeyDown = function(e)
 			if (!HOulu.currPortal)
 			{
 				HOulu.currPortal = HOulu._getNearPortal();
-				if (HOulu.currPortal)
+				if (HOulu.currPortal) // enter portal
 				{
+					TweenMax.killTweensOf("#portalPanel");
+					TweenMax.to($("#portalPanel"), .5, {css:{right:-70}, ease:Back.easeOut.config(2)});
+					
 					var img = HOulu.currPortal.targetImage;
 					img.material.opacity = 0;
 					img.visible = true;
@@ -108,8 +112,11 @@ HOulu.onKeyDown = function(e)
 					}
 				}
 			}
-			else
+			else // leave portal
 			{
+				TweenMax.killTweensOf("#portalPanel");
+				TweenMax.to($("#portalPanel"), .5, {css:{right:-600}, ease:Back.easeIn.config(2)});
+				
 				TweenMax.killTweensOf(HOulu.currPortal.targetImage.material);
 				
 				HOulu.currPortal.targetImage.visible = false;

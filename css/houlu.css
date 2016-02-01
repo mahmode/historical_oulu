@@ -99,3 +99,39 @@ body
 	display: none;
 	/*border: 1px solid red;*/
 }
+
+#portalPanel
+{
+	position: absolute;
+	color: #000;
+	background: rgba(255, 255, 255, 0.5);
+	font: normal 30px tahoma;
+	z-index: 9;
+	pointer-events:none;
+    top: 150px;
+    right: -600px; /* -70px=panel visible, -600=panel invisible */
+	width: 570px;
+	padding-left: 20px;
+	border-radius: 15px 0px 0px 15px;
+}
+
+#portalPanel .title
+{
+	font-size: 40px;
+	font-weight: bold;
+	text-align: center;
+}
+
+#hud
+{
+	position: absolute;
+	
+	font: normal 30px tahoma;
+	z-index: 9;
+	pointer-events:none;
+    top: 150px;
+    right: -600px; /* -70px=panel visible, -600=panel invisible */
+	width: 570px;
+	padding-left: 20px;
+	border-radius: 15px 0px 0px 15px;
+}
