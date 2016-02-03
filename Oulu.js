@@ -15,6 +15,7 @@ var clock = new THREE.Clock();
 var oulu, colliderBuildings, colliderGround;
 var debugMode = false;
 var mapCamera, mapWidth = 240, mapHeight = 160; 
+var mapPos = 300;
 
 // FUNCTIONS 		
 function init()
@@ -279,7 +280,7 @@ function render()
 	
 	if (!HOulu.paused)
 	{
-		renderer.setViewport( w - 300, 100, mapWidth, mapHeight );
+		renderer.setViewport( w - mapPos, 100, mapWidth, mapHeight );
 		renderer.render( scene, mapCamera );
 	}
 }

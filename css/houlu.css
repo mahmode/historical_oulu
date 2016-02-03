@@ -33,11 +33,10 @@ body
 #map_border
 {
 	z-index:99;
-	background: rgba(0,0,0,0);
-	opacity:.9;
 	position:absolute;
-	bottom:95px;
+	bottom:99px;
 	right:58px;
+	pointer-events:none;
 	display:none;
 }
 
@@ -108,7 +107,7 @@ body
 	font: normal 30px tahoma;
 	z-index: 9;
 	pointer-events:none;
-    top: 150px;
+    bottom: 60px;
     right: -700px; /* -70px=panel visible, -680=panel invisible */
 	width: 570px;
 	padding: 0 70px 0 20px;

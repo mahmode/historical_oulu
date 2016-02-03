@@ -19,6 +19,16 @@ HOulu.init = function(scen, cam, cam2)
 	});
 	
 	window.addEventListener('keydown', this.onKeyDown, false);
+	
+	//$("#hud .help").click(function()
+	//{
+		////$("#hud .help").hide();
+	//});
+	
+	//$("#hud .help .close").click(function()
+	//{
+		////$("#hud .help").hide();
+	//});
 }
 
 HOulu.update = function()
@@ -100,6 +110,10 @@ HOulu.onKeyDown = function(e)
 					$("#portalPanel .description").html(img.d.desc);
 					
 					HOulu._hidePortals();
+					
+					// hide minimap
+					$("#map_border").hide();
+					mapPos = 0;
 				}
 			}
 			else // leave portal
@@ -125,23 +139,32 @@ HOulu.onKeyDown = function(e)
 				HOulu.currPortal = null;
 				
 				HOulu._showPortals();
+				
+				// show minimap
+				$("#map_border").show();
+				mapPos = 300;
 			}
 			break;
 		
 		case 70: // F
-			HOulu._debugPortal.targetImage.position.x -= .2;
+			HOulu._debugPortal.targetImage.position.x -= .2 * Math.cos(yawObject.rotation.y);
+			HOulu._debugPortal.targetImage.position.z += .2 * Math.sin(yawObject.rotation.y);
 			break;
 		
 		case 72: // H
-			HOulu._debugPortal.targetImage.position.x += .2;
+			HOulu._debugPortal.targetImage.position.x += .2 * Math.cos(yawObject.rotation.y);
+			HOulu._debugPortal.targetImage.position.z -= .2 * Math.sin(yawObject.rotation.y);
 			break;
 		
 		case 84: // T
-			HOulu._debugPortal.targetImage.position.z -= .2;
+			HOulu._debugPortal.targetImage.position.x += .2 * Math.cos(yawObject.rotation.y + 90 * Math.PI/180);
+			HOulu._debugPortal.targetImage.position.z -= .2 * Math.sin(yawObject.rotation.y + 90 * Math.PI/180);
+			
 			break;
 		
 		case 71: // G
-			HOulu._debugPortal.targetImage.position.z += .2;
+			HOulu._debugPortal.targetImage.position.x -= .2 * Math.cos(yawObject.rotation.y + 90 * Math.PI/180);
+			HOulu._debugPortal.targetImage.position.z += .2 * Math.sin(yawObject.rotation.y + 90 * Math.PI/180);
 			break;
 		
 		case 82: // R
@@ -171,19 +194,34 @@ HOulu.onKeyDown = function(e)
 			break;
 		
 		case 101: // 5
-			HOulu._debugPortal.position.z -= .2;
+			//HOulu._debugPortal.position.z -= .2;
+			HOulu._debugPortal.position.x += .2 * Math.cos(yawObject.rotation.y + 90 * Math.PI/180);
+			HOulu._debugPortal.position.z -= .2 * Math.sin(yawObject.rotation.y + 90 * Math.PI/180);
 			break;
 		
 		case 98: // 2
-			HOulu._debugPortal.position.z += .2;
+			//HOulu._debugPortal.position.z += .2;
+			HOulu._debugPortal.position.x -= .2 * Math.cos(yawObject.rotation.y + 90 * Math.PI/180);
+			HOulu._debugPortal.position.z += .2 * Math.sin(yawObject.rotation.y + 90 * Math.PI/180);
 			break;
 		
 		case 97: // 1
-			HOulu._debugPortal.position.x -= .2;
+			HOulu._debugPortal.position.x -= .2 * Math.cos(yawObject.rotation.y);
+			HOulu._debugPortal.position.z += .2 * Math.sin(yawObject.rotation.y);
 			break;
 		
 		case 99: // 3
-			HOulu._debugPortal.position.x += .2;
+			HOulu._debugPortal.position.x += .2 * Math.cos(yawObject.rotation.y);
+			HOulu._debugPortal.position.z -= .2 * Math.sin(yawObject.rotation.y);
+			break;
+			
+		case 88: // x
+			HOulu._debugPortal.targetImage.visible = !HOulu._debugPortal.targetImage.visible;
+			break;
+		
+		case 67: // c
+			HOulu._debugPortal.position.x = yawObject.position.x;
+			HOulu._debugPortal.position.z = yawObject.position.z;
 			break;
 		
 		case 90: // Z
