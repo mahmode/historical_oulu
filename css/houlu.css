@@ -22,22 +22,25 @@ body
 
 #loading img
 {
-	vertical-align:middle;
+	vertical-align: middle;
 }
 
-#hud
+#minimap
 {
-	display: none;
-}
-
-#map_border
-{
-	z-index:99;
+	z-index:77;
 	position:absolute;
-	bottom:99px;
-	right:58px;
+	width: 330px;
+	height: 330px;
+	bottom:50px;
+	left:-350px;
+	background: url("../img/minimap_frame.png");
 	pointer-events:none;
-	display:none;
+}
+
+#minimap canvas
+{
+	margin-left: 15px;
+	margin-top: 15px;
 }
 
 #pressSpace 
@@ -126,7 +129,6 @@ body
 #hud
 {
 	position: absolute;
-	
 	font: normal 30px tahoma;
 	z-index: 9;
 	pointer-events:none;
@@ -135,4 +137,5 @@ body
 	width: 570px;
 	padding-left: 20px;
 	border-radius: 15px 0px 0px 15px;
+	display: none;
 }

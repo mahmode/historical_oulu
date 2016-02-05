@@ -13,6 +13,9 @@
 	<script src="js/gsap/easing/EasePack.min.js"></script>
 	<script src="js/gsap/TweenMax.min.js"></script>
 	<script src="js/houlu/Loader.js"></script>
+	<script src="js/houlu/DebugControls.js"></script>
+	<script src="js/houlu/PortalManager.js"></script>
+	<script src="js/houlu/Minimap.js"></script>
 	<script src="js/houlu/HOulu.js"></script>
 	<script src="js/Three.js"></script>
 	<script src="js/Detector.js"></script>
@@ -57,14 +60,21 @@
 	<div id="portalPanel">
 		<p class="description">description</p>
 	</div>
-<!-- ------------------------------------------------------------ -->
-<img id="map_border" width="242" height="162" src='img/min_borders.png' />
-<div id="loading"><img width="25" height="25" src='img/loading.gif' /> loading Historical Oulu...</div>
-<div id="title">Historical Oulu</div>
-<div id="pressStart">Press [SPACE] to start</div>
-<div id="pressSpace">Press [SPACE] to enter the portal</div>
-<div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
-<script src="Oulu.js"></script>
+	
+	<div id="minimap">
+		<canvas width="300" height="300">
+			<p class="description">description</p>
+		</canvas>
+	</div>
+	
+	<div id="loading"><img width="25" height="25" src='img/loading.gif' /> loading Historical Oulu...</div>
+	<div id="title">Historical Oulu</div>
+	<div id="pressStart">Press [SPACE] to start</div>
+	<div id="pressSpace">Press [SPACE] to enter the portal</div>
+	<div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+	<script src="Oulu.js"></script>
 
+	
+	
 </body>
 </html>

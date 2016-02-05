@@ -1,11 +1,11 @@
 body{background:#222;}
 #loading{position:absolute;z-index:50;margin:auto;top:0;right:0;bottom:0;left:0;width:700px;height:60px;color:white;font:normal 20px tahoma;text-align:center;pointer-events:none;}
 #loading img{vertical-align:middle;}
-#hud{display:none;}
-#map_border{z-index:99;position:absolute;bottom:99px;right:58px;pointer-events:none;display:none;}
+#minimap{z-index:77;position:absolute;width:330px;height:330px;bottom:50px;left:-350px;background:url("../img/minimap_frame.png");pointer-events:none;}
+#minimap canvas{margin-left:15px;margin-top:15px;}
 #pressSpace{position:absolute;z-index:99;margin:auto;top:0;right:0;bottom:0;left:0;width:700px;height:60px;color:white;font:bold 40px tahoma;text-align:center;-webkit-text-stroke-width:1px;-webkit-text-stroke-color:black;text-shadow:4px 4px #000000;display:none;pointer-events:none;}
 #pressStart{position:absolute;z-index:8;bottom:150px;height:60px;right:0;left:0;color:white;font:bold 30px tahoma;text-align:center;-webkit-text-stroke-width:1px;-webkit-text-stroke-color:black;text-shadow:2px 2px #000000;pointer-events:none;display:none;}
 #title{position:absolute;color:#ff9900;font:bold 100px tahoma;text-align:center;-webkit-text-stroke-width:1px;-webkit-text-stroke-color:black;text-shadow:4px 4px #000000;z-index:9;pointer-events:none;top:150px;right:0;left:0;height:100px;display:none;}
 #portalPanel{position:absolute;color:black;background:rgba(255,255,255,.6);font:normal 30px tahoma;z-index:9;pointer-events:none;bottom:60px;right:-700px;width:570px;padding:0 70px 0 20px;border-radius:25px 0px 0px 25px;border:20px solid rgba(0,0,0,.2);background-clip:padding-box;}
 #portalPanel .title{font-size:40px;font-weight:bold;text-align:center;}
-#hud{position:absolute;font:normal 30px tahoma;z-index:9;pointer-events:none;top:150px;right:-600px;width:570px;padding-left:20px;border-radius:15px 0px 0px 15px;}
+#hud{position:absolute;font:normal 30px tahoma;z-index:9;pointer-events:none;top:150px;right:-600px;width:570px;padding-left:20px;border-radius:15px 0px 0px 15px;display:none;}

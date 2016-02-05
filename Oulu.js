@@ -14,8 +14,6 @@ var keyboard = new THREEx.KeyboardState();
 var clock = new THREE.Clock();
 var oulu, colliderBuildings, colliderGround;
 var debugMode = false;
-var mapCamera, mapWidth = 240, mapHeight = 160; 
-var mapPos = 300;
 
 // FUNCTIONS 		
 function init()
@@ -31,22 +29,19 @@ function init()
 	
 	// FLY CAMERA
 	flyCamera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
-	scene.add(flyCamera);
+	
+	//flyCamera = new THREE.OrthographicCamera(
+    //window.innerWidth / -3,		// Left
+    //window.innerWidth / 3,		// Right
+    //window.innerHeight / 3,		// Top
+    //window.innerHeight / -3,	// Bottom
+    //-100,            			// Near 
+    //1500);           			// Far 
+	//scene.add(flyCamera);
+	
 	flyCamera.position.set(0, 0, 0); // don't touch this! modify freelook.js --> yawObject.position instead
 	
-	mapCamera = new THREE.OrthographicCamera(
-    window.innerWidth / -7,		// Left
-    window.innerWidth / 7,		// Right
-    window.innerHeight / 7,		// Top
-    window.innerHeight / -7,	// Bottom
-    -100,            			// Near 
-    1500);           			// Far 
-	mapCamera.up = new THREE.Vector3(0,0,-1);
-	mapCamera.lookAt( new THREE.Vector3(0,-1,0) );
-    mapCamera.zoom = 5;
-	scene.add(mapCamera);
-	
-	scene.add( sphere );
+	//scene.add( sphere );
 	
 	// RENDERER
 	if (Detector.webgl)
@@ -91,10 +86,9 @@ function init()
 	// flyControls.rollSpeed = Math.PI / 12; // Math.PI / 24
 	// flyControls.autoForward = false;
 	// flyControls.dragToLook = true;
-	flyControls = new THREE.FreeLookControls(flyCamera, mapCamera, renderer.domElement);
+	flyControls = new THREE.FreeLookControls(flyCamera, renderer.domElement);
 	flyControls.enabled = true;
 	scene.add(flyControls.getObject());
-	scene.add(flyControls.getObject2());
 	
 	// STATS
 	stats = new Stats();
@@ -103,14 +97,6 @@ function init()
 	stats.domElement.style.zIndex = 100;
 	container.appendChild(stats.domElement);
 	
-	var geometry = new THREE.PlaneGeometry( 1200, 1200, 1,1 );
-    var material = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide} );
-    var plane = new THREE.Mesh( geometry, material );
-	plane.position.y = -350;
- 	plane.rotation.x = 180;
-    plane.rotation.z = 0;
-    scene.add( plane );
-	 
 	// White directional light at half intensity shining from the top.
 	//directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
 	//directionalLight.position.set(100, 100, 100);
@@ -127,7 +113,7 @@ function init()
 	//    to e.g. "colorAmbient" : [0.75, 0.75, 0.75]
 	
 	Loader.init();
-	HOulu.init(scene, flyCamera, mapCamera);
+	HOulu.init(scene, flyCamera);
 	
 	var jsonLoader = new THREE.JSONLoader();
 	jsonLoader.load("Masterscene.js", function(geometry, material) {
@@ -277,10 +263,4 @@ function render()
 	renderer.setViewport( 0, 0, w, h );
     renderer.render(scene, flyCamera);
    //renderer.autoClear = true;
-	
-	if (!HOulu.paused)
-	{
-		renderer.setViewport( w - mapPos, 100, mapWidth, mapHeight );
-		renderer.render( scene, mapCamera );
-	}
 }

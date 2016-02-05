@@ -3,37 +3,22 @@
  * @author Tapani Jämsä (free look modification)
  */
 var yawObject;
-var yawObject2;
-
 var pitchObject;
-var pitchObject2;
 
-var geometry = new THREE.SphereGeometry( 5, 32, 32 ); 
-var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
-var sphere = new THREE.Mesh( geometry, material ); 
- 
-THREE.FreeLookControls = function(camera, camera2, domElement) {
+THREE.FreeLookControls = function(camera, domElement) {
 
 	var scope = this;
 	this.domElement = (domElement !== undefined) ? domElement : document;
 
 	camera.rotation.set(0, 0, 0);
-	camera2.rotation.set(250, 0, 0);
 	
 	pitchObject = new THREE.Object3D();
 	pitchObject.add(camera);
 
-	pitchObject2 = new THREE.Object3D();
-	pitchObject2.add(camera2);
-	
 	yawObject = new THREE.Object3D();
 	yawObject.position.set(2.3, 14, -25.24);
 	yawObject.add(pitchObject);
 
-	yawObject2 = new THREE.Object3D();
-	yawObject2.position.set(-119, 100, 115);
-	yawObject2.add(pitchObject2);
-	
 	var moveForward = false;
 	var moveBackward = false;
 	var moveLeft = false;
@@ -73,8 +58,6 @@ THREE.FreeLookControls = function(camera, camera2, domElement) {
 		var movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
 
 		yawObject.rotation.y -= movementX * 0.004;
-		yawObject2.rotation.y -= movementX * 0.002;
-		
 		pitchObject.rotation.x -= movementY * 0.004;
 		
 		if (yawObject.rotation.y > 6.28318)
@@ -175,11 +158,6 @@ THREE.FreeLookControls = function(camera, camera2, domElement) {
 
 	};
 	
-	this.getObject2 = function()
-	{
-		return yawObject2;
-	};
-
 	this.getVelocity = function() {
 
 		return velocity;
@@ -214,7 +192,7 @@ THREE.FreeLookControls = function(camera, camera2, domElement) {
 
 	this.update = function(delta) {
 
-		if (scope.enabled === false || HOulu.currPortal || HOulu.paused) return;
+		if (scope.enabled === false || PortalManager.isInsidePortal() || HOulu.paused) return;
 
 		delta *= 0.1;
 
@@ -243,10 +221,6 @@ THREE.FreeLookControls = function(camera, camera2, domElement) {
 		yawObject.translateY(velocity.y * speed);
 		yawObject.translateZ(velocity.z * speed);
 
-		sphere.position = yawObject.position;
-        yawObject2.position.x  =  yawObject.position.x;
-        yawObject2.position.z  =  yawObject.position.z;
-		
 		// if ( yawObject.position.y < 10 ) {
 
 		// 	velocity.y = 0;
