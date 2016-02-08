@@ -31,19 +31,36 @@ HOulu.init = function(scen, cam)
 	//});
 }
 
+HOulu._currTime = 0;
+
 HOulu.update = function()
 {
 	if (!Loader.complete) return;
 	
-	if (!PortalManager.isInsidePortal())
-	{
-		if (PortalManager.getNearPortal() && !this.paused)
+	//if (performance.now() - this._currTime > 50)
+	//{
+		//this._currTime = performance.now();
+		
+		if (!PortalManager.isInsidePortal())
 		{
-			if (!$("#pressSpace").is(':visible'))
+			PortalManager.updateRotatingImage();
+			
+			if (PortalManager.getNearPortal() && !this.paused)
 			{
-				$("#pressSpace").show();
-				$("#pressSpace").css("opacity", 1);
-				TweenMax.to($("#pressSpace"), .7, {alpha: .1, repeat: -1, yoyo: true, ease: Linear.easeNone});
+				if (!$("#pressSpace").is(':visible'))
+				{
+					$("#pressSpace").show();
+					$("#pressSpace").css("opacity", 1);
+					TweenMax.to($("#pressSpace"), .7, {alpha: .1, repeat: -1, yoyo: true, ease: Linear.easeNone});
+				}
+			}
+			else
+			{
+				if ($("#pressSpace").is(':visible'))
+				{
+					$("#pressSpace").hide();
+					TweenMax.killTweensOf($("#pressSpace"));
+				}
 			}
 		}
 		else
@@ -54,17 +71,9 @@ HOulu.update = function()
 				TweenMax.killTweensOf($("#pressSpace"));
 			}
 		}
-	}
-	else
-	{
-		if ($("#pressSpace").is(':visible'))
-		{
-			$("#pressSpace").hide();
-			TweenMax.killTweensOf($("#pressSpace"));
-		}
-	}
-	
-	MiniMap.update(yawObject.position.x, yawObject.position.z);
+		
+		MiniMap.update(yawObject.position.x, yawObject.position.z);
+	//}
 }
 
 HOulu._onKeyDown = function(e)

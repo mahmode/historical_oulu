@@ -100,4 +100,5 @@ MiniMap.update = function(worldX, worldZ)
 	this._ctx.rotate(- this._angle - yawObject.rotation.y);
 	this._ctx.drawImage(this._imgMarker, -this._markerPivotX, -this._markerPivotY); // draw marker
 	this._ctx.restore();
+	
 }

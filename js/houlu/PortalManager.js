@@ -21,6 +21,13 @@ PortalManager.checEnterPortal = function()
 	
 	if (this._currPortal)
 	{
+		// remove the portal thumb if exists
+		if (this._currPortal.thumb)
+		{
+			scene.remove(this._currPortal.thumb);
+			this._currPortal.thumb = null;
+		}
+		
 		// show historical image
 		var img = this._currPortal.targetImage;
 		img.material.opacity = 0;
@@ -53,14 +60,16 @@ PortalManager.exitPortal = function()
 	return firstVisit;
 }
 
-PortalManager.getNearPortal = function()
+PortalManager.getNearPortal = function(distance2)
 {
+	distance2 = distance2 || 30;
+	
 	for (var i = 0; i < this.portals.length; i++)
 	{
 		dx = this.portals[i].position.x - yawObject.position.x;
 		dz = this.portals[i].position.z - yawObject.position.z;
 		
-		if (dx*dx + dz*dz < 30)
+		if (dx*dx + dz*dz < distance2)
 			return this.portals[i];
 	}
 	
@@ -136,4 +145,50 @@ PortalManager._addPortal = function(x, z)
 	TweenMax.to(portal.scale, 1, {x: 5.4, y: 5.1, repeat: -1, yoyo: true, ease: Linear.easeInOut});
 	
 	return portal;
+}
+
+PortalManager._addThumbImage = function(portal)
+{
+	var texture = THREE.ImageUtils.loadTexture(portal.targetImage.d.url);
+	var material = new THREE.MeshBasicMaterial({map:texture, side: THREE.DoubleSide, transparent: true});
+	var geometry = new THREE.PlaneGeometry(1.8, 1.8 * portal.targetImage.d.ih / portal.targetImage.d.iw);
+	var mesh = new THREE.Mesh( geometry, material );
+	mesh.position.x = portal.position.x;
+	mesh.position.y = 13.7;
+	mesh.position.z = portal.position.z;
+	scene.add(mesh);
+	
+	TweenLite.from(mesh.material, 2, {opacity: 0});
+	TweenLite.from(mesh.scale, 2, {x: .1, y:.1});
+	
+	portal.thumb = mesh;
+}
+
+PortalManager.updateRotatingImage = function()
+{
+	for (var i = 0; i < this.portals.length; i++)
+	{
+		dx = this.portals[i].position.x - yawObject.position.x;
+		dz = this.portals[i].position.z - yawObject.position.z;
+		
+		if (dx*dx + dz*dz < 120)
+		{
+			if (!this.portals[i].thumb)
+				this._addThumbImage(this.portals[i]);
+		}
+		else
+		{
+			if (this.portals[i].thumb)
+			{
+				scene.remove(this.portals[i].thumb);
+				this.portals[i].thumb = null;
+			}
+		}
+	}
+	
+	for (i = 0; i < this.portals.length; i++)
+	{
+		if (this.portals[i].thumb)
+			this.portals[i].thumb.rotation.y += .02;
+	}
 }
