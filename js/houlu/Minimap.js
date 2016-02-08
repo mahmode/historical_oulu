@@ -5,78 +5,99 @@ var MiniMap = function()
 
 MiniMap.init = function()
 {
-	this.mapX = 0;
-	this.mapY = 0;
-	this.mapW = 991;
-	this.mapH = 942;
-	this.markerX = 0;
-	this.markerY = 0;
-	this.markerPivotX = 20;
-	this.markerPivotY = 25;
-	this.edge = 50; // padding on the edge of the map
+	this._mapX = 0;
+	this._mapY = 0;
+	this._mapW = 777;
+	this._mapH = 741;
+	this._markerX = 0;
+	this._markerY = 0;
+	this._markerPivotX = 20;
+	this._markerPivotY = 25;
+	this._edge = 50; // padding on the _edge of the map
+	this._spotRadius = 8; // radius of portal spot on the map
+	this._spotRadiusMod = 0; // used to animate the spot radius
+	this._spotRadiusModDir = 1; // used to animate the spot radius
 	
-	this.worldMaxX = 344.37294542232866;
 	this.worldMinX = -66.3606553032138;
-	this.worldMaxZ = -23.233253826074243;
 	this.worldMinZ = -300.95091362123924;
+	var worldMaxX = 344.37294542232866;
+	var worldMaxZ = -23.233253826074243;
 	
-	var dz = this.worldMaxZ - this.worldMinZ;
-	var dx = this.worldMaxX - this.worldMinX;
-	var l = Math.sqrt(dx*dx+dz*dz); // length of the world top edge
-	this.angle = Math.atan(dz/dx);
-	this.cos = Math.cos(this.angle);
-	this.sin = Math.sin(this.angle);
-	this.scale = 744/l; // 744: length of the map top end (measured on photoshop)
-    this.canvas = $("#minimap canvas")[0];
-    this.ctx = this.canvas.getContext("2d");
+	var dz = worldMaxZ - this.worldMinZ;
+	var dx = worldMaxX - this.worldMinX;
+	var l = Math.sqrt(dx*dx+dz*dz); // length of the world top _edge
+	this._angle = Math.atan(dz/dx);
+	this._cos = Math.cos(this._angle);
+	this._sin = Math.sin(this._angle);
+	this._scale = 744/l; // 744: length of the map top end (measured on photoshop)
+    this._canvas = $("#minimap canvas")[0];
+    this._ctx = this._canvas.getContext("2d");
 	
-	this.ctx.beginPath();
-	this.ctx.arc(this.canvas.width * .5,this.canvas.width * .5, this.canvas.width * .5, 0, Math.PI*2, true);
-	this.ctx.clip();
+	this._ctx.beginPath();
+	this._ctx.arc(this._canvas.width * .5,this._canvas.width * .5, this._canvas.width * .5, 0, Math.PI*2, true);
+	this._ctx.clip();
 	
-	this.imgMap = new Image();
-	this.imgMap.src = "img/map.jpg";
-	this.imgMarker = new Image();
-	this.imgMarker.src = "img/map_marker.png";
-	this.imgPortalSpot = new Image();
-	this.imgPortalSpot.src = "img/portal_spot.png";
-	this.imgPortalSpotVisited = new Image();
-	this.imgPortalSpotVisited.src = "img/portal_spot_visited.png";
+	this._imgMap = new Image();
+	this._imgMap.src = "img/map.jpg";
+	this._imgMarker = new Image();
+	this._imgMarker.src = "img/map_marker.png";
 }
 
 MiniMap.update = function(worldX, worldZ)
 {
-	this.markerX = (worldX * this.cos + worldZ * this.sin - (this.worldMinX * this.cos + this.worldMinZ * this.sin)) * this.scale;
-	this.markerY = (worldZ * this.cos - worldX * this.sin - (this.worldMinZ * this.cos - this.worldMinX * this.sin)) * this.scale;
+	this._markerX = (worldX * this._cos + worldZ * this._sin - (this.worldMinX * this._cos + this.worldMinZ * this._sin)) * this._scale;
+	this._markerY = (worldZ * this._cos - worldX * this._sin - (this.worldMinZ * this._cos - this.worldMinX * this._sin)) * this._scale;
 	
-	this.mapX = this.canvas.width * .5 - this.markerX;
-	this.mapY = this.canvas.height * .5 - this.markerY;
+	this._mapX = this._canvas.width * .5 - this._markerX;
+	this._mapY = this._canvas.height * .5 - this._markerY;
 	
-	if (this.mapX < this.canvas.width - this.mapW - this.edge)
-		this.mapX = this.canvas.width - this.mapW - this.edge;
-	else if (this.mapX > this.edge)
-		this.mapX = this.edge;
+	if (this._mapX < this._canvas.width - this._mapW - this._edge)
+		this._mapX = this._canvas.width - this._mapW - this._edge;
+	else if (this._mapX > this._edge)
+		this._mapX = this._edge;
 	
-	if (this.mapY < this.canvas.height - this.mapH - this.edge)
-		this.mapY = this.canvas.height - this.mapH - this.edge;
-	else if (this.mapY > this.edge)
-		this.mapY = this.edge;
+	if (this._mapY < this._canvas.height - this._mapH - this._edge)
+		this._mapY = this._canvas.height - this._mapH - this._edge;
+	else if (this._mapY > this._edge)
+		this._mapY = this._edge;
 	
-	this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-	this.ctx.drawImage(this.imgMap, this.mapX, this.mapY); // draw map
+	this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
+	this._ctx.drawImage(this._imgMap, this._mapX, this._mapY); // draw map
 	
-	var px, pz, i, d;
+	var px, pz, i, d, r;
+	this._spotRadiusMod += .12 * this._spotRadiusModDir;
+	if (this._spotRadiusMod > 4)
+	{
+		this._spotRadiusMod = 4;
+		this._spotRadiusModDir = -1;
+	}
+	else if (this._spotRadiusMod < 0)
+	{
+		this._spotRadiusMod = 0;
+		this._spotRadiusModDir = 1;
+	}
+	
 	for (i = 0; i < PortalManager.portals.length; i++)
 	{
 		d = PortalManager.portals[i].targetImage.d;
-		px = (d.px * this.cos + d.pz * this.sin - (this.worldMinX * this.cos + this.worldMinZ * this.sin)) * this.scale;
-		pz = (d.pz * this.cos - d.px * this.sin - (this.worldMinZ * this.cos - this.worldMinX * this.sin)) * this.scale;
-		this.ctx.drawImage(PortalManager.portals[i].viewed ? this.imgPortalSpotVisited : this.imgPortalSpot, this.mapX + px - 12, this.mapY + pz - 12); // draw portal spot
+		px = this._mapX + (d.px * this._cos + d.pz * this._sin - (this.worldMinX * this._cos + this.worldMinZ * this._sin)) * this._scale;
+		pz = this._mapY + (d.pz * this._cos - d.px * this._sin - (this.worldMinZ * this._cos - this.worldMinX * this._sin)) * this._scale;
+		r = PortalManager.portals[i].viewed ? this._spotRadius : this._spotRadius + this._spotRadiusMod;
+		
+		this._ctx.fillStyle = PortalManager.portals[i].viewed ? "#8a8cfe" : "#fdfb7d";
+		this._ctx.lineWidth = 3;
+		this._ctx.strokeStyle = '#000';
+		this._ctx.beginPath();
+		this._ctx.arc(px, pz, r, 0, 2 * Math.PI);
+		this._ctx.fill();
+		this._ctx.stroke();
+		  
+		//this._ctx.drawImage(PortalManager.portals[i].viewed ? this._imgPortalSpotVisited : this._imgPortalSpot, this._mapX + px - 12, this._mapY + pz - 12); // draw portal spot
 	}
 	
-	this.ctx.save();
-	this.ctx.translate(this.mapX + this.markerX, this.mapY + this.markerY);
-	this.ctx.rotate(- this.angle - yawObject.rotation.y);
-	this.ctx.drawImage(this.imgMarker, -this.markerPivotX, -this.markerPivotY); // draw marker
-	this.ctx.restore();
+	this._ctx.save();
+	this._ctx.translate(this._mapX + this._markerX, this._mapY + this._markerY);
+	this._ctx.rotate(- this._angle - yawObject.rotation.y);
+	this._ctx.drawImage(this._imgMarker, -this._markerPivotX, -this._markerPivotY); // draw marker
+	this._ctx.restore();
 }

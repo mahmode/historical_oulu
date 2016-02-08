@@ -52,7 +52,7 @@ THREE.FreeLookControls = function(camera, domElement) {
 
 	var onMouseMove = function(event) {
 
-		if (scope.enabled === false || dragging === false || HOulu.currPortal || HOulu.paused) return;
+		if (scope.enabled === false || dragging === false || PortalManager.isInsidePortal() || HOulu.paused) return;
 
 		var movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
 		var movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;

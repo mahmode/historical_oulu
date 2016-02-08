@@ -14,11 +14,11 @@ HOulu.init = function(scen, cam)
 	{
 		MiniMap.init(data.d);
 		PortalManager.init(data.d);
-		DebugControls.init(data.d.length);
-		DebugControls.enable(8);
+		EditControls.init(data.d.length);
+		EditControls.enable(8);
 	});
 	
-	window.addEventListener('keydown', this.onKeyDown, false);
+	window.addEventListener('keydown', this._onKeyDown, false);
 	
 	//$("#hud .help").click(function()
 	//{
@@ -67,7 +67,7 @@ HOulu.update = function()
 	MiniMap.update(yawObject.position.x, yawObject.position.z);
 }
 
-HOulu.onKeyDown = function(e)
+HOulu._onKeyDown = function(e)
 {
 	switch (e.keyCode)
 	{

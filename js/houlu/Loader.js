@@ -2,8 +2,8 @@ var Loader = {}
 
 Loader.init = function()
 {
-	this._numLoaded = 0;
 	this.complete = false;
+	this._numLoaded = 0;
 	
 	$("#ThreeJS").hide();
 }
