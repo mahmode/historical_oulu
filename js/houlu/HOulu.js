@@ -15,20 +15,28 @@ HOulu.init = function(scen, cam)
 		MiniMap.init(data.d);
 		PortalManager.init(data.d);
 		EditControls.init(data.d.length);
-		EditControls.enable(8);
+		EditControls.enable(13);
 	});
 	
 	window.addEventListener('keydown', this._onKeyDown, false);
 	
-	//$("#hud .help").click(function()
-	//{
-		////$("#hud .help").hide();
-	//});
+	$("#hud .help").click(function() 
+	{ 
+		TweenMax.to($("#helpDialog"), .5, {css:{top: 0}, ease:Back.easeOut.config(2)});
+
+	});
 	
-	//$("#hud .help .close").click(function()
-	//{
-		////$("#hud .help").hide();
-	//});
+    $("#close").click(function() 
+	{ 
+		TweenMax.to($("#helpDialog"), .5, {css:{top: -752}, ease:Back.easeIn.config(2)});
+
+	});
+    
+    $("#cong_close").click(function() 
+	{ 
+		TweenMax.to($("#congratulations"), .5, {css:{top: -450}, ease:Back.easeIn.config(2)});
+	});
+
 }
 
 HOulu._currTime = 0;
@@ -92,7 +100,8 @@ HOulu._onKeyDown = function(e)
 				TweenLite.to($("#title"), .5, {css:{top:"-=100", alpha:0}, ease:Back.easeIn.config(4)});
 				TweenLite.to($("#pressStart"), .5, {css:{bottom:"-=100", alpha:0}, ease:Back.easeIn.config(4)});
 				
-				$("#hud").show();
+				TweenMax.killTweensOf("#hud");
+				TweenMax.to($("#hud"), .5, {css:{top: 0}, ease:Back.easeOut.config(2)});
 				
 				// show minimap
 				TweenLite.to($("#minimap"), .5, {css:{left:50}, ease:Back.easeOut});
@@ -115,6 +124,10 @@ HOulu._onKeyDown = function(e)
 					TweenMax.to($("#portalPanel"), .5, {css:{right:-70}, ease:Back.easeOut.config(1)});
 					$("#portalPanel .description").html(img.d.desc);
 					
+					// hide hud
+					TweenMax.killTweensOf("#hud");
+					TweenMax.to($("#hud"), .5, {css:{top:-300}, ease:Back.easeIn.config(2)});
+					
 					// hide minimap
 					TweenMax.killTweensOf("#minimap");
 					TweenLite.to($("#minimap"), .5, {css:{left:-350}, ease:Back.easeOut});
@@ -125,6 +138,10 @@ HOulu._onKeyDown = function(e)
 				// hide the portal panel
 				TweenMax.killTweensOf("#portalPanel");
 				TweenMax.to($("#portalPanel"), .5, {css:{right:-700}, ease:Back.easeIn.config(1)});
+				
+				// show hud
+				TweenMax.killTweensOf("#hud");
+				TweenMax.to($("#hud"), .5, {css:{top: 0}, ease:Back.easeOut.config(2)});
 				
 				if (PortalManager.exitPortal()) // first visit
 				{

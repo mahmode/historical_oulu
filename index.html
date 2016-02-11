@@ -36,25 +36,33 @@
     <div id="info_UI"></div>
 	
     <div id="hud">
-       <div id="Achievments"></div>
-	   <div id="Score"></div>
-	   <div id="Help"></div>
-	   <div id="Sound"></div>
-       <div id="Score"></div>
-       <div id="Map_borders"></div>
-       <div id="Achievments_List" title="Information">
-			<img id ="fat" src="images/Score.png"/>
-            <img src="images/Achive.png"  />
+        <img class="help" src="img/help_2.png" />
+		<div class="score_panel">
+			<span class="score"> 00/20 </span>
+			<img class="portal_ico" src="img/portal_visited.png" />  
 		</div>
+    </div>
 
-		<div id="Help_Dialog">
-		  <p> W/Up arrow    : Move Forward<br/>
-			  S/Down arrow  : Move Backword<br/>
-			  D/Right arrow : Move to the Right<br/>
-			  A/Left arrow  : Move to the Left<br/>
-			  Spacebar    : Interact with the portals</p>    
+		<div id="helpDialog">
+           <table>
+			   <tr>
+				   <td><img src="img/arrowKeys.png" /></td>
+				   <td><img src="img/mouse.png"/ ></td>
+				   <td><img src="img/portal_help.png"></td>
+			   </tr>
+			   <tr>
+				   <td>Move</td>
+				   <td>Drag to look around</td>
+				   <td>Go next portals to interact with them</td>
+			   </tr>
+		   </table>
+            <img id =close src="img/close.png"></img>
 		</div>
         
+   <div id="congratulations">
+       <span id = cong_text> Congratulations for visiting all the portals</span>
+        <img id =retry src="img/retry.PNG"> Retry</img>
+        <img id =cong_close src="img/close.png"> Close </img>
     </div>
 	
 	<div id="portalPanel">
