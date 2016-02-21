@@ -7,11 +7,15 @@ HOulu.init = function(scen, cam)
 	this._scene = scen;
 	this._camera = cam;
 	this._score = 0;
-	
+	this._numImages = 0;
+	this.first_login = false;
 	this.paused = true;
 	
+	var thiz = this;
 	$.getJSON( "data/data.json", function( data )
 	{
+		thiz._numImages = data.d.length;
+		
 		MiniMap.init(data.d);
 		PortalManager.init(data.d);
 		EditControls.init(data.d.length);
@@ -23,18 +27,28 @@ HOulu.init = function(scen, cam)
 	$("#hud .help").click(function() 
 	{ 
 		TweenMax.to($("#helpDialog"), .5, {css:{top: 0}, ease:Back.easeOut.config(2)});
-
 	});
 	
-    $("#close").click(function() 
+   $("#close").click(function() 
 	{ 
-		TweenMax.to($("#helpDialog"), .5, {css:{top: -752}, ease:Back.easeIn.config(2)});
-
+        if (HOulu.first_login) 
+        {
+			HOulu.paused = false;
+			
+			// show hud
+			TweenMax.killTweensOf("#hud");
+			TweenMax.to($("#hud"), .5, {css:{top: 0}, ease:Back.easeOut.config(2)});
+			
+			// show minimap
+			TweenLite.to($("#minimap"), .5, {css:{left:50}, ease:Back.easeOut});
+        }
+		
+		TweenMax.to($("#helpDialog"), .5, {css:{top: -1000, bottom: 400}, ease:Back.easeIn.config(2)});
 	});
     
     $("#cong_close").click(function() 
 	{ 
-		TweenMax.to($("#congratulations"), .5, {css:{top: -450}, ease:Back.easeIn.config(2)});
+		TweenMax.to($("#congratulations"), .5, {css:{top: -550 , bottom: 700}, ease:Back.easeIn.config(2)});
 	});
 
 }
@@ -93,18 +107,15 @@ HOulu._onKeyDown = function(e)
 			
 			if (HOulu.paused) // leave splash and start
 			{
-				HOulu.paused = false;
-				
+				HOulu.first_login = true; 
+                
 				TweenMax.killTweensOf("#title");
 				TweenMax.killTweensOf("#pressStart");
 				TweenLite.to($("#title"), .5, {css:{top:"-=100", alpha:0}, ease:Back.easeIn.config(4)});
 				TweenLite.to($("#pressStart"), .5, {css:{bottom:"-=100", alpha:0}, ease:Back.easeIn.config(4)});
 				
-				TweenMax.killTweensOf("#hud");
-				TweenMax.to($("#hud"), .5, {css:{top: 0}, ease:Back.easeOut.config(2)});
+				TweenMax.to($("#helpDialog"), .5, {css:{top: 0, bottom: 0 }, ease:Back.easeOut.config(2), delay: 1});
 				
-				// show minimap
-				TweenLite.to($("#minimap"), .5, {css:{left:50}, ease:Back.easeOut});
 				return;
 			}
 			
@@ -147,6 +158,7 @@ HOulu._onKeyDown = function(e)
 				{
 					HOulu._score ++;
 					console.log("score: ", HOulu._score);
+					$(".score_panel .score").text(HOulu._score +"/" + HOulu._numImages);
 				}
 				
 				// show minimap

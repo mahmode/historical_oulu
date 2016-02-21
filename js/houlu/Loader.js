@@ -27,7 +27,6 @@ Loader.updateLoadProgress = function()
 				}
 			});
 			
-			
 			Loader.complete = true;
 		}, 1000);
 	}
