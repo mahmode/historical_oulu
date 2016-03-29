@@ -81,7 +81,15 @@ PortalManager.hidePortals = function()
 	for (var i = 0; i < this.portals.length; i++)
 	{
 		if (this.portals[i] != this._currPortal)
+		{
 			this.portals[i].visible = false;
+			
+			if (this.portals[i].thumb)
+			{
+				scene.remove(this.portals[i].thumb);
+				this.portals[i].thumb = null;
+			}
+		}
 	}
 }
 

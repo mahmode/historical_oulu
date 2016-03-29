@@ -29,6 +29,8 @@ MiniMap.init = function()
 	this._angle = Math.atan(dz/dx);
 	this._cos = Math.cos(this._angle);
 	this._sin = Math.sin(this._angle);
+	this._constX = this.worldMinX * this._cos + this.worldMinZ * this._sin;
+	this._constZ = this.worldMinZ * this._cos - this.worldMinX * this._sin;
 	this._scale = 744/l; // 744: length of the map top end (measured on photoshop)
     this._canvas = $("#minimap canvas")[0];
     this._ctx = this._canvas.getContext("2d");
@@ -45,8 +47,8 @@ MiniMap.init = function()
 
 MiniMap.update = function(worldX, worldZ)
 {
-	this._markerX = (worldX * this._cos + worldZ * this._sin - (this.worldMinX * this._cos + this.worldMinZ * this._sin)) * this._scale;
-	this._markerY = (worldZ * this._cos - worldX * this._sin - (this.worldMinZ * this._cos - this.worldMinX * this._sin)) * this._scale;
+	this._markerX = (worldX * this._cos + worldZ * this._sin - this._constX) * this._scale;
+	this._markerY = (worldZ * this._cos - worldX * this._sin - this._constZ) * this._scale;
 	
 	this._mapX = this._canvas.width * .5 - this._markerX;
 	this._mapY = this._canvas.height * .5 - this._markerY;

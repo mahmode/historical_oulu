@@ -16,7 +16,7 @@ THREE.FreeLookControls = function(camera, domElement) {
 	pitchObject.add(camera);
 
 	yawObject = new THREE.Object3D();
-	yawObject.position.set(2.3, 14, -25.24);
+	yawObject.position.set(-92, 14, 100);
 	yawObject.add(pitchObject);
 
 	var moveForward = false;

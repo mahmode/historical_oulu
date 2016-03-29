@@ -5,10 +5,13 @@ EditControls.init = function(count)
 	this._lastIndex = count - 1 || 0; // last portal index
 	this._currIndex = 0;
 	this._debugPortal = null;
+	this.enabled = false;
 }
 
 EditControls.enable = function(index)
 {
+	this.enabled = true;
+	
 	// clamp index
 	this._currIndex = Math.max(index || 0, 0);
 	this._currIndex = Math.min(this._currIndex, this._lastIndex);
@@ -17,6 +20,7 @@ EditControls.enable = function(index)
 		this._debugPortal.targetImage.visible = false;
 	
 	this._debugPortal = PortalManager.getPortalAt(this._currIndex);
+	this._debugPortal.targetImage.material.opacity = 1;
 	this._debugPortal.targetImage.visible = true;
 	
 	// move camera to portal position and look at targetImage
@@ -30,6 +34,8 @@ EditControls.enable = function(index)
 
 EditControls.disable = function()
 {
+	this.enabled = false;
+	
 	window.removeEventListener('keydown', this._onKeyDown, false);
 }
 

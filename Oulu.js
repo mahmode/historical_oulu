@@ -91,11 +91,11 @@ function init()
 	scene.add(flyControls.getObject());
 	
 	// STATS
-	stats = new Stats();
-	stats.domElement.style.position = 'absolute';
-	stats.domElement.style.bottom = '0px';
-	stats.domElement.style.zIndex = 100;
-	container.appendChild(stats.domElement);
+	//stats = new Stats();
+	//stats.domElement.style.position = 'absolute';
+	//stats.domElement.style.bottom = '0px';
+	//stats.domElement.style.zIndex = 100;
+	//container.appendChild(stats.domElement);
 	
 	// White directional light at half intensity shining from the top.
 	//directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
@@ -113,7 +113,10 @@ function init()
 	//    to e.g. "colorAmbient" : [0.75, 0.75, 0.75]
 	
 	Loader.init();
-	HOulu.init(scene, flyCamera);
+	Loader.completeFunc = function()
+	{
+		HOulu.init(scene, flyCamera);
+	}
 	
 	var jsonLoader = new THREE.JSONLoader();
 	jsonLoader.load("Masterscene.js", function(geometry, material) {
@@ -253,7 +256,7 @@ function update() {
 
 	flyControls.update(delta * 1000);
 	HOulu.update();
-	stats.update();
+	//stats.update();
 }
 
 function render()
